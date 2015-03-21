@@ -1,9 +1,9 @@
 get '/' do 
-  @user = User.new
-  erb :index # < --- this view has a login form, a create account button
+  erb :index
 end 
 
 get '/new' do 
+  @user = User.new
   erb :new
 end
 
