@@ -1,0 +1,11 @@
+<h1>Edit Account</h1>
+<form action="/account" method="post">
+  <input type="hidden" action="/" method="_patch">
+  <%= erb :'_user_form' %>
+  <input type="submit" value="Update account" class="shadow"/>
+</form>
+<hr class="or"/>
+<form action="/account" method="post">
+  <input type="hidden" action="/" method="_delete">
+  <input type="submit" value="Delete account" class="shadow"/>
+</form>
