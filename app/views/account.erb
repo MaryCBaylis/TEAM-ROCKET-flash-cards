@@ -16,7 +16,7 @@
           <!-- creates li for each card with pokemon image -->
           <% deck.cards.each do |card| %>
             <% if card.correct %>
-            <li><img src="/public/images/<%= card.pokemon.name %>" alt="<%= card.pokemon.name %>"></li>
+            <li><img src="/public/images/<%= card.pokemon.name %>.png" alt="<%= card.pokemon.name %>"></li>
             <% else %>
             <li></li>
             <% end %>
@@ -29,4 +29,5 @@
      </tr>
     <% end %>
    </table>
+  <a href="/account/logout" class="button small shadow" title="Log out">Quit</a>
 </div>
