@@ -16,9 +16,6 @@ class User < ActiveRecord::Base
   end
   
   def self.authenticate(email, password)
-    #return the user object if true
-    #return false if not authenticated
-    #class method
     user = User.where(email: email).first
     if Password.new(user.password_digest) == password
       user
