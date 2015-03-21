@@ -17,7 +17,7 @@ post '/account/new' do
   end 
 end
 
-get '/account' do 
+get '/account' do
   puts "[LOG] responding to a GET request for /account"
   puts "Session id = #{session[:id]}"
   if session[:id] == nil
@@ -32,7 +32,8 @@ end
 
 post '/account' do 
   puts "[LOG] responding to a POST request for /account"
-    if User.authenticate(params[:user][:email], params[:user][:password])
+    @user = User.authenticate(params[:user][:email], params[:user][:password])
+    if @user 
       session[:id] = @user.id
       erb :account
     else
