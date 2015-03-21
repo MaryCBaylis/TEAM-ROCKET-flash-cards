@@ -20,7 +20,7 @@ require "sinatra/reloader" if development?
 
 require 'erb'
 
-require 'infelections'
+require_relative 'inflections'
 
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
