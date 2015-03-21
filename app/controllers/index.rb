@@ -4,14 +4,21 @@ end
 
 get '/account/new' do 
   puts "[LOG] responding to a GET request for /account/new"
-  puts "#{params.inspect}"
-  @user = User.new
   erb :new
+end
+
+post '/account/new' do
+  puts "[LOG] responding to a POST request for /account/new"
+  @user = User.new(params[:user])
+  if @user.save
+    redirect '/account'
+  else 
+    redirect '/account/new'
+  end 
 end
 
 get '/account' do 
   puts "[LOG] responding to a GET request for /account"
-  puts "#{params.inspect}"
   puts "Session id = #{session[:id]}"
   if session[:id] == nil
     @permission = false
@@ -25,41 +32,13 @@ end
 
 post '/account' do 
   puts "[LOG] responding to a POST request for /account"
-  puts "#{params.inspect}"
-  @user = User.authenticate(params[:user])
-  if @user
-    session[:id] = @user.id
-    erb :account
-  else
+    if User.authenticate(params[:user])
+      session[:id] = @user.id
+      erb :account
+    else
     redirect '/'
-  end
+    end
 end
-
-patch '/account' do
-  puts "[LOG] responding to a PATCH request for /account"
-  puts "#{params.inspect}"
-  if current_user
-    current_user.update(params[:user]) 
-  end 
-  redirect '/account'
-end 
-
-delete '/account' do 
-  puts "[LOG] responding to a DELETE request for /account"
-  if current_user
-    current_user.destroy
-  end
-  redirect '/'
-end
-
-get '/account/edit' do 
-  puts "[LOG] responding to a GET request for /account/edit"
-  if current_user
-    erb :edit
-  else 
-    redirect '/'
-  end 
-end 
 
 def current_user
   if session[:id] == nil
