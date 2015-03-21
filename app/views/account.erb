@@ -9,7 +9,7 @@
      </tr>
      <tr class="played_deck">
        <td class="played_deck--score">
-         <div class="deck"><span><%= deck.complete %></span></div>
+         <div class="deck"><span><%= deck.cards.where(correct: true).count %></span></div>
        </td>
        <td>
          <ul class="pokemon">
