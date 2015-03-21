@@ -9,7 +9,7 @@ end
 
 post '/account/new' do
   puts "[LOG] responding to a POST request for /account/new"
-  @user = User.new(params[:user])
+  @user = User.new(params[:user][:email], params[:user][:password])
   if @user.save
     redirect '/account'
   else 
