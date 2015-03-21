@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   
   def self.authenticate(email, password)
     user = User.where(email: email).first
-    if Password.new(user.password_digest) == password
+    if BCrypt::Password.new(user.password_digest) == password
       user
     else
       nil
