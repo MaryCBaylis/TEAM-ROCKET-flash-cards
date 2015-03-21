@@ -1,0 +1,18 @@
+<div class="container shadow">
+  <h1 class="yellow blue-outline important">Pokédecks</h1>
+  <p class="speech-bubble">Guess the right answer to collect all the Pokémon!</p>
+  <img src="/public/images/Oak_anime.png" alt="image of Professor Oak" class="position-oak">
+  <a href="/account/new">Create Account</a>
+  <h2>Log In</h2>
+  <form action="/account" method="post">
+    <fieldset>
+      <label for="email">email</label>
+      <input type="text" name="user[email]" id="email" placeholder="email"/>
+    </fieldset>
+     <fieldset>
+      <label for="password">Password</label>
+      <input type="password" name="user[password]" id="password" placeholder="password"/>
+    </fieldset>
+    <input type="submit" value="Create!" class="shadow"/>
+  </form>
+</div>
