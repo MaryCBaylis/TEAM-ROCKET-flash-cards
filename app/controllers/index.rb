@@ -32,7 +32,7 @@ end
 
 post '/account' do 
   puts "[LOG] responding to a POST request for /account"
-    if User.authenticate(params[:user])
+    if User.authenticate(params[:user][:email], params[:user][:password])
       session[:id] = @user.id
       erb :account
     else
