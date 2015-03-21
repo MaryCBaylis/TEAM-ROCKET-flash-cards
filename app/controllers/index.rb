@@ -4,12 +4,14 @@ end
 
 get '/account/new' do 
   puts "[LOG] responding to a GET request for /account/new"
+  puts "#{params.inspect}"
   @user = User.new
   erb :new
 end
 
 get '/account' do 
   puts "[LOG] responding to a GET request for /account"
+  puts "#{params.inspect}"
   puts "Session id = #{session[:id]}"
   if session[:id] == nil
     @permission = false
@@ -22,6 +24,8 @@ get '/account' do
 end 
 
 post '/account' do 
+  puts "[LOG] responding to a POST request for /account"
+  puts "#{params.inspect}"
   @user = User.authenticate(params[:user])
   if @user
     session[:id] = @user.id
@@ -32,6 +36,8 @@ post '/account' do
 end
 
 patch '/account' do
+  puts "[LOG] responding to a PATCH request for /account"
+  puts "#{params.inspect}"
   if current_user
     current_user.update(params[:user]) 
   end 
@@ -39,6 +45,7 @@ patch '/account' do
 end 
 
 delete '/account' do 
+  puts "[LOG] responding to a DELETE request for /account"
   if current_user
     current_user.destroy
   end
@@ -46,6 +53,7 @@ delete '/account' do
 end
 
 get '/account/edit' do 
+  puts "[LOG] responding to a GET request for /account/edit"
   if current_user
     erb :edit
   else 
@@ -54,11 +62,13 @@ get '/account/edit' do
 end 
 
 get '/decks' do 
+  puts "[LOG] responding to a GET request for /decks"
   @decks = Deck.all
   erb :decks
 end 
 
 get '/ratings' do 
+  puts "[LOG] responding to a GET request for /ratings"
   @ratings = Rating.all
   erb :ratings
 end 
