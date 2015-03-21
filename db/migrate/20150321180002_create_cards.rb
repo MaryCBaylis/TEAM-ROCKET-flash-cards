@@ -5,7 +5,7 @@ class CreateCards < ActiveRecord::Migration
       t.string :answer
       t.integer :pokemon_id
       t.integer :deck_id
-      t.boolean :correct
+      t.boolean :correct, default: false
       
       t.timestamps
     end

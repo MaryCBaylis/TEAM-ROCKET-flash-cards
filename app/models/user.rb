@@ -15,8 +15,13 @@ class User < ActiveRecord::Base
     self.password_digest = BCrypt::Password.create(plaintext_password)
   end
   
-  def authenticate(plaintext_password)
-    Password.new(self.password_digest) == plaintext_password
+  def self.authenticate(email, password)
+    user = User.where(email: email).first
+    if Password.new(user.password_digest) == password
+      user
+    else
+      nil
+    end
   end
   
 end

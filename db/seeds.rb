@@ -17,7 +17,7 @@ Card.create!(question: "8 + 2 = ?", answer: "10", pokemon_id: 63, deck_id: 1)
 Card.create!(question: "6 + 3 = ?", answer: "9", pokemon_id: 120, deck_id: 1)
 Card.create!(question: "7 + 5 = ?", answer: "12", pokemon_id: 41, deck_id: 1)
 Card.create!(question: "8 + 7 = ?", answer: "15", pokemon_id: 54, deck_id: 1)
-Card.create!(question: "9 + 5 = ?", answer: "14", pokemon_id: 41, deck_id: 1)
+Card.create!(question: "9 + 5 = ?", answer: "14", pokemon_id: 74, deck_id: 1)
 Card.create!(question: "3 + 10 = ?", answer: "13", pokemon_id: 66, deck_id: 1)
 
 Deck.create!(title: "Poke-Subtraction!", complete: false, legendary_pokemon_id: 144)
