@@ -2,12 +2,15 @@ get '/' do
   erb :index
 end 
 
-get '/new' do 
+get '/account/new' do 
+  puts "[LOG] responding to a GET request for /account/new"
   @user = User.new
   erb :new
 end
 
 get '/account' do 
+  puts "[LOG] responding to a GET request for /account"
+  puts "Session id = #{session[:id]}"
   if session[:id] == nil
     @permission = false
     erb :account
