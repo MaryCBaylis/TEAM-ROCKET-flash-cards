@@ -5,7 +5,7 @@
     <!-- creates 2 table rows per deck: 1 with deck name, 1 with stats -->
     <% @user.decks.each do |deck| %>
     <tr>
-       <th colspan="3"><%= deck.name %></th>
+       <th colspan="3"><%= deck.title %></th>
      </tr>
      <tr class="played_deck">
        <td class="played_deck--score">
@@ -16,7 +16,7 @@
           <!-- creates li for each card with pokemon image -->
           <% deck.cards.each do |card| %>
             <% if card.correct %>
-            <li><img src="/public/images/<%= card.pokemon.name %>.png" alt="<%= card.pokemon.name %>"></li>
+            <li><img src="/images/pokemon/<%= card.pokemon.name %>.png" alt="<%= card.pokemon.name %>"></li>
             <% else %>
             <li></li>
             <% end %>
