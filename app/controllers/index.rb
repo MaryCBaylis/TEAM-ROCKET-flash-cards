@@ -20,11 +20,11 @@ end
 
 get '/account' do
   puts "[LOG] responding to a GET request for /account"
-  puts "Session id = #{session[:id]}"
   if session[:id] == nil
     @permission = false
-    erb :account
+    redirect '/'
   else
+    puts "Session id = #{session[:id]}"
     @permission = true
     current_user
     erb :account
