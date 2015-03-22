@@ -322,6 +322,10 @@ hr {
 .game_card span {
   text-align: center;
 }
+.game_card span img {
+  text-align: center;
+  max-height: 220px;
+}
 .game_card .float-left, .game_card .float-right {
   display: inline-block;
   text-align: center;
