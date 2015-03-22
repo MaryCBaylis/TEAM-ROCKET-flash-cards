@@ -302,7 +302,7 @@ hr {
   font-size: 1.5em;
 }
 
-.deck:hover {
+.large:hover {
   animation: side-to-side 1s infinite;
 }
 
@@ -310,4 +310,9 @@ hr {
   0%   { transform: rotate(2deg) translate(5%, 2%); }
   50%  { transform: rotate(-2deg) translate(5%, 2%); }
   100% { transform: rotate(2deg) translate(5%, 2%); }
+}
+
+.game_card {
+  width: 75%;
+  min-height: 300px;
 }
