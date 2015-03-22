@@ -21,7 +21,7 @@ get '/round/:deck_id' do
     @round.save
 
 
-    @current_index = @deck.current_card_index || 0
+    @current_index = @round.current_card_index || 0
     current_card(@current_index)
 
     erb :round
@@ -85,6 +85,6 @@ end
 
 def current_card(current_index)
   @current_card = Card.find(@round.deck_order.split(",")[current_index])
-  @round.deck.current_card_index = current_index
-  @round.deck.save
+  @round.current_card_index = current_index
+  @round.save
 end
