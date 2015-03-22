@@ -38,7 +38,8 @@ post '/account' do
       session[:id] = @user.id
       erb :account
     else
-    redirect '/'
+    @message = 'The email or password you entered was incorrect.'
+    erb :index
     end
 end
 

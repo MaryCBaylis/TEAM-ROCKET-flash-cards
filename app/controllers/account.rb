@@ -26,8 +26,8 @@ end
 
 get '/account/logout' do
   session[:id] = nil
-  
-  redirect '/'
+  @message = "You have been successfully logged out."
+  erb :index
 end
 
 get '/ratings' do 
