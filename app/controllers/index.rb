@@ -1,5 +1,10 @@
 get '/' do
-  erb :index
+  if logged_in?
+    current_user
+    erb :account
+  else
+    erb :index
+  end
 end
 
 get '/account/new' do
@@ -20,14 +25,13 @@ end
 
 get '/account' do
   puts "[LOG] responding to a GET request for /account"
-  if session[:id] == nil
-    @permission = false
-    redirect '/'
-  else
+  if logged_in?
     puts "Session id = #{session[:id]}"
-    @permission = true
     current_user
     erb :account
+  else
+    session[:id] == nil
+    redirect '/'
   end
 end
 
@@ -38,8 +42,8 @@ post '/account' do
       session[:id] = @user.id
       erb :account
     else
-    @message = 'The email or password you entered was incorrect.'
-    erb :index
+      @message = 'The email or password you entered was incorrect.'
+      erb :index
     end
 end
 
