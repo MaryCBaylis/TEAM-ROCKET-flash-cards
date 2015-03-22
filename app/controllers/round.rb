@@ -14,21 +14,21 @@ get '/round/:deck_id' do
   if logged_in?
     @front = true
     puts "[LOG] responding to a GET request for /round/deck_id"
-  
+
     @deck = Deck.find(params[:deck_id])
     @round = Round.find_or_create_by(deck_id: @deck.id, user_id: session[:id])
     @round.deck_order = @deck.deck_shuffle.map { |card| card.id }.join(",")
     @round.save
-  
-    @current_index = @round.deck.current_card_id.to_i || 0
+
+
+    @current_index = @deck.current_card_index || 0
     current_card(@current_index)
-  
+
     erb :round
   else
     redirect '/'
   end
 
-end
 
 # checks entered guess right/wrong
 post '/round/:deck_id/:index' do
@@ -48,7 +48,7 @@ end
 get '/round/:deck_id/finish' do
   if logged_in?
     current_round
-  
+
     erb :endgame
   else
     redirect '/'
@@ -61,9 +61,9 @@ get '/round/:deck_id/:index' do
   if logged_in?
     @front = true
     current_round
-  
+
     @current_index = params[:index].to_i + 1
-  
+
     if @current_index <= @deck.cards.size - 1
       current_card(@current_index)
     else
@@ -82,6 +82,9 @@ def current_round
   @round = Round.where(deck_id: @deck.id, user_id: session[:id]).first
 end
 
-def current_card(index)
-  @current_card = Card.find(@round.deck_order.split(",")[@current_index])
+
+def current_card(current_index)
+  @current_card = Card.find(@round.deck_order.split(",")[current_index])
+  @round.deck.current_card_index = current_index
+  @round.deck.save
 end
