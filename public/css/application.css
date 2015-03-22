@@ -278,6 +278,7 @@ hr {
    -webkit-box-shadow: inset 0 1px 2px gray;
    box-shadow: inset 0 1px 2px gray;
   border-radius: 50%;
+  max-width: 100%;
 }
 
 .large {
@@ -292,7 +293,7 @@ hr {
   max-width: 100%;
   max-height: 150px;
 }
-.large h3 {
+.deck h3 {
   font-size: 2em;
   color: white;
   text-align: center;
@@ -315,4 +316,21 @@ hr {
 .game_card {
   width: 75%;
   min-height: 300px;
+  margin: 0 auto;
+  display: block;
+}
+
+.game_card span {
+  text-align: center;
+}
+.game_card .float-left, .game_card .float-right {
+  display: inline-block;
+  text-align: center;
+  width: 49%;
+}
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
 }

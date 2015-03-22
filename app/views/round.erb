@@ -15,13 +15,20 @@
 <% else %>
 
 <div class="deck game_card <%= @current_card.correct %>">
-  <h1 class="important"><%= @current_card.answer %></h1>
-  <% if @current_card.correct %>
-    <img src="/images/pokemon/<%= @current_card.pokemon.name %>.jpg" alt="">
-    <p>Correct!</p>
-  <% else %>
-    <p>Bummer</p>
-  <% end %>
+  <div class="float-left">
+    <span>
+      <img src="/images/pokemon/<%= @current_card.pokemon.name %>.jpg" alt="<%= @current_card.pokemon.name %>">
+    </span>
+    <h3 class="trainer blue-outline"><%= @current_card.pokemon.name %></h3>
+  </div>
+  <div class="float-right">
+    <h1 class="important"><%= @current_card.answer %></h1>
+    <% if @current_card.correct %>
+      <p>Correct!</p>
+    <% else %>
+      <p>Bummer</p>
+    <% end %>
+    <a href="/round/<%= @deck.id %>/<%= @current_index %>" class="next button small shadow">Next</a>
+  </div>
 </div>
-<a href="/round/<%= @deck.id %>/<%= @current_index %>" class="next button small shadow">Next</a>
 <% end %>
