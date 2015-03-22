@@ -1,0 +1,34 @@
+<h1 class="outline">Welcome</h1>
+<h2 class="trainer yellow blue-outline important">Trainer <%= @user.name %></h2>
+<div class="user_deck_collections">
+  <table class="collection">
+    <!-- creates 2 table rows per deck: 1 with deck name, 1 with stats -->
+    <% @user.decks.each do |deck| %>
+    <tr>
+       <th colspan="3"><%= deck.title %></th>
+     </tr>
+     <tr class="played_deck">
+       <td class="played_deck--score">
+         <div class="deck"><span><%= deck.cards.where(correct: true).count %></span></div>
+       </td>
+       <td>
+         <ul class="pokemon">
+          <!-- creates li for each card with pokemon image -->
+          <% deck.cards.each do |card| %>
+            <% if card.correct %>
+            <li><img src="/images/pokemon/<%= card.pokemon.name %>.png" alt="<%= card.pokemon.name %>"></li>
+            <% else %>
+            <li></li>
+            <% end %>
+          <% end %>
+        </ul>
+       </td>
+       <td class="played_deck--replay">
+         <a href="/round/<%= deck.id %>/replay" class="button small  shadow">Replay</a>
+       </td>
+     </tr>
+    <% end %>
+   </table>
+  <a href="/decks" class="button shadow">Decks</a>
+  <a href="/account/logout" class="button small shadow" title="Log out">Log out</a>
+</div>
