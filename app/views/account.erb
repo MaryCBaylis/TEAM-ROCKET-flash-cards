@@ -1,34 +1,47 @@
-<h2 class="trainer yellow blue-outline important">Trainer <%= @user.name %></h2>
-<h1 class="outline">Pokédex</h1>
-<a href="/decks" class="button shadow center_button">Play Now!</a>
-<div class="user_deck_collections">
-  <table class="collection">
-    <!-- creates 2 table rows per deck: 1 with deck name, 1 with stats -->
-    <% @user.decks.each do |deck| %>
-    <tr>
-       <th colspan="3"><%= deck.title %></th>
-     </tr>
-     <tr class="played_deck">
-       <td class="played_deck--score">
-         <div class="deck"><span><%= deck.cards.where(correct: true).count %></span></div>
-       </td>
-       <td>
-         <ul class="pokemon">
-          <!-- creates li for each card with pokemon image -->
-          <% deck.cards.each do |card| %>
-            <% if card.correct %>
-            <li><img src="/images/pokemon/<%= card.pokemon.name %>.png" alt="<%= card.pokemon.name %>"></li>
+<div class="container shadow">
+  <h2 class="trainer yellow blue-outline important">Trainer <%= @user.name %></h2>
+  <h1 class="outline">Pokédex</h1>
+  <a href="/decks" class="button shadow center_button">Play Now!</a>
+  <div class="user_deck_collections">
+    <table class="collection">
+      <!-- creates 2 table rows per deck: 1 with deck name, 1 with stats -->
+      <% @user.decks.each do |deck| %>
+      <tr>
+         <th colspan="3"><%= deck.title %></th>
+       </tr>
+       <tr class="played_deck">
+         <td class="played_deck--score">
+          <div class="deck small">
+            <% if deck.cards.where(correct: true).count == deck.cards.count %>
+            <span>
+                <img src="/images/pokemon/<%= deck.legendary_pokemon.name %>.png" alt="<%= deck.legendary_pokemon.name %>">
+            </span>
+            <p class="small_title"><%= deck.legendary_pokemon.name %></p>
             <% else %>
-            <li></li>
+            <span>
+              <%= deck.cards.where(correct: true).count %>
+            </span>
             <% end %>
-          <% end %>
-        </ul>
-       </td>
-       <td class="played_deck--replay">
-         <a href="/round/<%= deck.id %>/replay" class="button small  shadow">Replay</a>
-       </td>
-     </tr>
-    <% end %>
-   </table>
-  <a href="/account/logout" class="button small shadow center_button" title="Log out">Log out</a>
+          </div>
+         </td>
+         <td>
+           <ul class="pokemon">
+            <!-- creates li for each card with pokemon image -->
+            <% deck.cards.each do |card| %>
+              <% if card.correct %>
+              <li><img src="/images/pokemon/<%= card.pokemon.name %>.png" alt="<%= card.pokemon.name %>"></li>
+              <% else %>
+              <li></li>
+              <% end %>
+            <% end %>
+          </ul>
+         </td>
+         <td class="played_deck--replay">
+           <a href="/round/<%= deck.id %>/replay" class="button small  shadow">Replay</a>
+         </td>
+       </tr>
+      <% end %>
+     </table>
+    <a href="/account/logout" class="button small shadow center_button" title="Log out">Log out</a>
+  </div>
 </div>
