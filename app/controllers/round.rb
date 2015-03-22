@@ -14,7 +14,7 @@ get '/round/:deck_id' do
   @round.deck_order = @deck.deck_shuffle.map { |card| card.id }.join(",")
   @round.save
 
-  @current_index = @round.deck.current_card_id.to_i || 0
+  @current_index = @round.current_card_index || 0
   current_card(@current_index)
 
   erb :round
@@ -48,7 +48,7 @@ get '/round/:deck_id/:index' do
   current_round
 
   @current_index = params[:index].to_i + 1
-
+  @round.current_card_index = @current_index
   if @current_index <= @deck.cards.size - 1
     current_card(@current_index)
   else
@@ -66,6 +66,4 @@ end
 
 def current_card(index)
   @current_card = Card.find(@round.deck_order.split(",")[@current_index])
-  @round.deck.current_card_id = @current_card.id
-  @round.deck.save
 end
