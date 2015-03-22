@@ -4,6 +4,9 @@
 <div class="login">
   <a href="/account/new" title="create account" class="button shadow">Create Account</a>
   <hr class="or"/>
+  <% if @message %>
+    <%= @message %>
+  <% end %>
   <form action="/account" method="post">
     <fieldset>
       <label for="email">email</label>
