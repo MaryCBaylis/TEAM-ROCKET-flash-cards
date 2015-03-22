@@ -35,16 +35,28 @@ post '/round/:deck_id/:index' do
   erb :round
 end
 
+get '/round/:deck_id/finish' do
+  current_round
+
+  erb :endgame
+end
+
+
 # clicks on next, goes to next card
 get '/round/:deck_id/:index' do
   @front = true
   current_round
 
   @current_index = params[:index].to_i + 1
-  current_card(@current_index)
 
+  if @current_index <= @deck.cards.size - 1
+    current_card(@current_index)
+  else
+    redirect "/round/#{@deck.id}/finish"
+  end
   erb :round
 end
+
 
 
 def current_round
