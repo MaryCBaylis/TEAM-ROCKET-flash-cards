@@ -29,9 +29,3 @@ get '/account/logout' do
   @message = "You have been successfully logged out."
   erb :index
 end
-
-get '/ratings' do 
-  puts "[LOG] responding to a GET request for /ratings"
-  @ratings = Rating.all
-  erb :ratings
-end 
