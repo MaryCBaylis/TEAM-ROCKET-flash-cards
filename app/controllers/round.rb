@@ -28,7 +28,7 @@ get '/round/:deck_id' do
   else
     redirect '/'
   end
-
+end
 
 # checks entered guess right/wrong
 post '/round/:deck_id/:index' do
