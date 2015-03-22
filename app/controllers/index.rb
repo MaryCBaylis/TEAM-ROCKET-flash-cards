@@ -1,7 +1,7 @@
 get '/' do
   if logged_in?
     current_user
-    erb :account
+    redirect '/account'
   else
     erb :index
   end
