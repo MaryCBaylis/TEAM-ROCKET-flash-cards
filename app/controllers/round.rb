@@ -10,6 +10,7 @@ end
 
 # starts a round, asks for a guess
 get '/round/:deck_id' do
+
   if logged_in?
     @front = true
     puts "[LOG] responding to a GET request for /round/deck_id"
@@ -19,6 +20,7 @@ get '/round/:deck_id' do
     @round.deck_order = @deck.deck_shuffle.map { |card| card.id }.join(",")
     @round.save
 
+
     @current_index = @deck.current_card_index || 0
     current_card(@current_index)
 
@@ -26,7 +28,7 @@ get '/round/:deck_id' do
   else
     redirect '/'
   end
-end
+
 
 # checks entered guess right/wrong
 post '/round/:deck_id/:index' do
@@ -79,6 +81,7 @@ def current_round
   @deck = Deck.find(params[:deck_id])
   @round = Round.where(deck_id: @deck.id, user_id: session[:id]).first
 end
+
 
 def current_card(current_index)
   @current_card = Card.find(@round.deck_order.split(",")[current_index])

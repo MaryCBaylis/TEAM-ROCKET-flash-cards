@@ -293,7 +293,7 @@ hr {
   max-width: 100%;
   max-height: 150px;
 }
-.large h3 {
+.deck h3 {
   font-size: 2em;
   color: white;
   text-align: center;
@@ -303,7 +303,7 @@ hr {
   font-size: 1.5em;
 }
 
-.deck:hover {
+.large:hover {
   animation: side-to-side 1s infinite;
 }
 
@@ -311,4 +311,30 @@ hr {
   0%   { transform: rotate(2deg) translate(5%, 2%); }
   50%  { transform: rotate(-2deg) translate(5%, 2%); }
   100% { transform: rotate(2deg) translate(5%, 2%); }
+}
+
+.game_card {
+  width: 75%;
+  min-height: 300px;
+  margin: 0 auto;
+  display: block;
+}
+
+.game_card span {
+  text-align: center;
+}
+.game_card span img {
+  text-align: center;
+  max-height: 220px;
+}
+.game_card .float-left, .game_card .float-right {
+  display: inline-block;
+  text-align: center;
+  width: 49%;
+}
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
 }
