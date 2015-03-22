@@ -24,19 +24,14 @@ get '/account/edit' do
   end 
 end 
 
-get '/decks' do 
-  puts "[LOG] responding to a GET request for /decks"
-  @decks = Deck.all
-  erb :decks
-end 
+get '/account/logout' do
+  session[:id] = nil
+  
+  redirect '/'
+end
 
 get '/ratings' do 
   puts "[LOG] responding to a GET request for /ratings"
   @ratings = Rating.all
   erb :ratings
-end 
-
-get '/round' do 
-  # what else should be here? 
-  erb :round
 end 
