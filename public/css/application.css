@@ -58,6 +58,7 @@ h2 {
 }
 .important {
   font-size: 4em;
+  line-height: 1em;
 }
 
 
@@ -281,6 +282,9 @@ hr {
   max-width: 100%;
 }
 
+a.large_deck {
+  overflow: auto;
+}
 .large {
   width: 210px;
   height: 300px;
@@ -337,4 +341,11 @@ hr {
 }
 .float-right {
   float: right;
+}
+
+.center_button {
+  display: block;
+  width: 243px;
+  margin: 0 auto;
+  margin-bottom: 3em;
 }

@@ -1,5 +1,6 @@
-<h1 class="outline">Welcome</h1>
 <h2 class="trainer yellow blue-outline important">Trainer <%= @user.name %></h2>
+<h1 class="outline">Pokédex</h1>
+<a href="/decks" class="button shadow center_button">Play Now!</a>
 <div class="user_deck_collections">
   <table class="collection">
     <!-- creates 2 table rows per deck: 1 with deck name, 1 with stats -->
@@ -29,6 +30,5 @@
      </tr>
     <% end %>
    </table>
-  <a href="/decks" class="button shadow">Decks</a>
-  <a href="/account/logout" class="button small shadow" title="Log out">Log out</a>
+  <a href="/account/logout" class="button small shadow center_button" title="Log out">Log out</a>
 </div>
