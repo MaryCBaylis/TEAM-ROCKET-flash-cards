@@ -1,0 +1,16 @@
+<h1><%= @deck.title %></h1>
+<div class="deck large">
+  <span>
+    <img src="/images/pokemon/<%= @deck.legendary_pokemon.name %>.jpg" alt="">
+  </span>
+  <h3 class="trainer blue-outline"><%= @deck.legendary_pokemon.name %></h3>
+  <h4><%= @deck.title %></h4>
+</div>
+  <h2 class="important">You scored</h2>
+  <h2 class="important"><%= @deck.cards.where(correct: true).count %></h2>
+<% if @deck.cards.where(correct: true).count == @deck.cards.size %>
+<h3>You win the legendary pokemon!</h3>
+<% else %>
+<h3>Try again to guess all the right answers to win the legendary pokemon!</h3>
+<% end %>
+<a href="/decks" class="button shadow">Decks</a> <a href="/account" class="button shadow">Account</a>
