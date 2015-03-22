@@ -1,8 +1,8 @@
-get '/' do 
+get '/' do
   erb :index
-end 
+end
 
-get '/account/new' do 
+get '/account/new' do
   puts "[LOG] responding to a GET request for /account/new"
   erb :new
 end
@@ -11,10 +11,11 @@ post '/account/new' do
   puts "[LOG] responding to a POST request for /account/new"
   @user = User.new(params[:user])
   if @user.save
+    session[:id] = @user.id
     redirect '/account'
-  else 
+  else
     redirect '/account/new'
-  end 
+  end
 end
 
 get '/account' do
@@ -28,12 +29,12 @@ get '/account' do
     current_user
     erb :account
   end
-end 
+end
 
-post '/account' do 
+post '/account' do
   puts "[LOG] responding to a POST request for /account"
     @user = User.authenticate(params[:user][:email], params[:user][:password])
-    if @user 
+    if @user
       session[:id] = @user.id
       erb :account
     else
@@ -43,8 +44,8 @@ end
 
 def current_user
   if session[:id] == nil
-    return 
-  else 
+    return
+  else
     @user = User.find(session[:id])
-  end 
-end 
+  end
+end
