@@ -1,11 +1,59 @@
-get '/decks' do 
+get '/decks' do
   puts "[LOG] responding to a GET request for /decks"
   @decks = Deck.all
   erb :decks
 end
 
-get '/round/:deck_id' do 
+# starts a round, asks for a guess
+get '/round/:deck_id' do
+  @front = true
   puts "[LOG] responding to a GET request for /round/deck_id"
+
   @deck = Deck.find(params[:deck_id])
+  @round = Round.find_or_create_by(deck_id: @deck.id, user_id: session[:id])
+  @round.deck_order = @deck.deck_shuffle.map { |card| card.id }.join(",")
+  @round.save
+
+  @current_index = @round.deck.current_card_id.to_i || 0
+  current_card(@current_index)
+
   erb :round
-end 
+end
+
+# checks entered guess right/wrong
+post '/round/:deck_id/:index' do
+  puts "[LOG] responding to a POST request for /round/deck_id/index"
+
+  @front = false
+  current_round
+
+  @current_index = params[:index].to_i
+  current_card(@current_index)
+  @current_card.correct = @current_card.answer == params[:guess]
+  @current_card.save
+
+  erb :round
+end
+
+# clicks on next, goes to next card
+get '/round/:deck_id/:index' do
+  @front = true
+  current_round
+
+  @current_index = params[:index].to_i + 1
+  current_card(@current_index)
+
+  erb :round
+end
+
+
+def current_round
+  @deck = Deck.find(params[:deck_id])
+  @round = Round.where(deck_id: @deck.id, user_id: session[:id]).first
+end
+
+def current_card(index)
+  @current_card = Card.find(@round.deck_order.split(",")[@current_index])
+  @round.deck.current_card_id = @current_card.id
+  @round.deck.save
+end
