@@ -1,35 +1,39 @@
 <h1><%= @deck.title %></h1>
-
+<div class="game_wrapper">
 <% if @front %>
-<div class="deck game_card">
-  <h1 class="important"><%= @current_card.question %></h1>
-</div>
-<form action="/round/<%= @deck.id %>/<%= @current_index %>" method="post">
-<fieldset>
-  <label for="guess">Guess</label>
-  <input type="text" name="guess" placeholder="type in your guess">
-</fieldset>
-<input type="submit" value="Guess!">
-</form>
+  <div class="deck game_card">
+    <h1 class="important"><%= @current_card.question %></h1>
+  </div>
+  <form action="/round/<%= @deck.id %>/<%= @current_index %>" method="post">
+  <fieldset>
+    <label for="guess">Guess</label>
+    <input autofocus type="text" name="guess" placeholder="type in your guess">
+  </fieldset>
+  <input type="submit" value="Guess!">
+  </form>
 
 <% else %>
 
-<div class="deck game_card <%= @current_card.correct %>">
-  <div class="float-left">
-    <span>
-      <img src="/images/pokemon/<%= @current_card.pokemon.name %>.jpg" alt="<%= @current_card.pokemon.name %>">
-    </span>
-    <h3 class="trainer blue-outline"><%= @current_card.pokemon.name %></h3>
+  <div class="deck game_card <%= @current_card.correct %>">
+    <div class="float-left">
+      <span>
+        <div class="collect_me">
+          <img src="/images/pokemon/<%= @current_card.pokemon.name %>.jpg" alt="<%= @current_card.pokemon.name %>">
+          <div class='pokeball'></div>
+        </div>
+      </span>
+      <h3 class="trainer blue-outline"><%= @current_card.pokemon.name %></h3>
+    </div>
+    <div class="float-right">
+      <h1 class="important"><%= @current_card.answer %></h1>
+      <% if @current_card.correct %>
+        <p class="trainer semi-important blue-outline correct">Correct!</p>
+      <% else %>
+        <p class="trainer semi-important">Bummer</p>
+      <% end %>
+      <a href="/round/<%= @deck.id %>/<%= @current_index %>" class="next button shadow">Next</a>
+    </div>
   </div>
-  <div class="float-right">
-    <h1 class="important"><%= @current_card.answer %></h1>
-    <% if @current_card.correct %>
-      <p>Correct!</p>
-    <% else %>
-      <p>Bummer</p>
-    <% end %>
-    <a href="/account" class="next button small shadow">Quit</a>
-    <a href="/round/<%= @deck.id %>/<%= @current_index %>" class="next button shadow">Next</a>
-  </div>
-</div>
 <% end %>
+</div>
+<a href="/account" class="small button shadow center_button">Quit</a>

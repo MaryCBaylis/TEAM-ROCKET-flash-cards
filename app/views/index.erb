@@ -1,21 +1,23 @@
-<h1 class="yellow blue-outline important">Pokédecks</h1>
-<img src="/images/Oak_anime.png" alt="image of Professor Oak" class="position-oak">
-<p class="speech-bubble right shadow">Guess the right answer to collect all the Pokémon!</p>
-<div class="login">
-  <a href="/account/new" title="create account" class="button shadow">Create Account</a>
-  <hr class="or"/>
-  <% if @message %>
-    <%= @message %>
-  <% end %>
-  <form action="/account" method="post">
-    <fieldset>
-      <label for="email">email</label>
-      <input type="text" name="user[email]" id="email" placeholder="email"/>
-    </fieldset>
-     <fieldset>
-      <label for="password">Password</label>
-      <input type="password" name="user[password]" id="password" placeholder="password"/>
-    </fieldset>
-    <input type="submit" value="Log in!" class="shadow"/>
-  </form>
+<div class="container shadow">
+  <h1 class="yellow blue-outline important">Pokédecks</h1>
+  <img src="/images/Oak_anime.png" alt="image of Professor Oak" class="position-oak">
+  <p class="speech-bubble right shadow">Guess the right answers to collect all the Pokémon!</p>
+  <div class="login">
+    <a href="/account/new" title="create account" class="button shadow">Create Account</a>
+    <hr class="or"/>
+    <% if @message %>
+      <%= @message %>
+    <% end %>
+    <form action="/account" method="post">
+      <fieldset>
+        <label for="email">email</label>
+        <input type="text" name="user[email]" id="email" placeholder="email"/>
+      </fieldset>
+       <fieldset>
+        <label for="password">Password</label>
+        <input type="password" name="user[password]" id="password" placeholder="password"/>
+      </fieldset>
+      <input type="submit" value="Log in!" class="shadow"/>
+    </form>
+  </div>
 </div>

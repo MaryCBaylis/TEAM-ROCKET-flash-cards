@@ -48,7 +48,7 @@ end
 get '/round/:deck_id/finish' do
   if logged_in?
     current_round
-
+    @legendary = @deck.cards.where(correct: true).count == @deck.cards.size
     erb :endgame
   else
     redirect '/'

@@ -1,13 +1,15 @@
-<h1>Collect legendary Pokemon!</h1>
-<p>Guess every card in a deck right to get the legendary pokemon!</p>
-<% @decks.each do |deck| %>
-<a href="/round/<%= deck.id %>">
-<div class="deck large">
-  <span>
-    <img src="images/pokemon/<%= deck.legendary_pokemon.name %>.jpg" alt="">
-  </span>
-  <h3 class="trainer blue-outline"><%= deck.legendary_pokemon.name %></h3>
-  <h4><%= deck.title %></h4>
+<div class="container shadow">
+  <h1>Collect legendary Pokemon!</h1>
+  <p class="center_text">Guess every card in a deck right to get the legendary pokemon!</p>
+  <% @decks.each do |deck| %>
+  <a href="/round/<%= deck.id %>" class="large_deck" title-"Play this deck!">
+    <div class="deck large">
+      <span>
+        <img src="images/pokemon/<%= deck.legendary_pokemon.name %>.jpg" alt="">
+      </span>
+      <h3 class="trainer blue-outline"><%= deck.legendary_pokemon.name %></h3>
+      <h4><%= deck.title %></h4>
+    </div>
+  </a>
+  <% end %>
 </div>
-</a>
-<% end %>
